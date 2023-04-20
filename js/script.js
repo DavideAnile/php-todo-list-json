@@ -9,7 +9,7 @@ createApp({
             newTodo : {
 
                 name : '',
-                status : 'undone',
+                status : false,
             }
 
         }
@@ -27,19 +27,33 @@ createApp({
 
         addTodo(){
 
-            let data = this.newTodo
+            if(this.newTodo.name == ''){
+
+            } else {
+
+                let data = this.newTodo
+                    
                 
-            
-            
-            axios.post('./server.php', data, {headers: {'Content-Type' : 'multipart/form-data'}}).then(response => {
+                
+                axios.post('./server.php', data, {headers: {'Content-Type' : 'multipart/form-data'}}).then(response => {
+    
+                    this.getTodos();
+    
+                    this.newTodo.name = ''
+                })
 
-                this.getTodos();
+            }
 
-                this.newTodo.name = ''
-            })
 
-            
         },
+
+        toggleStatus(i){
+
+            this.todos[i].status = !this.todos[i].status
+        },
+
+        
+            
 
     },
 

@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-
     <link rel="stylesheet" href="css/style.css">
 
     
@@ -20,15 +20,21 @@
 
 
 <div class="big-container">
-    <div class="list-container">
-        <ul>
-            <li v-for="todo in todos">{{todo.name}}</li>
-        </ul>
-    </div>
 
-    <div class="input-container">
-        <input v-model="newTodo.name" type="text" placeholder="inserisci ToDo" @keyup.enter="addTodo()">
-        <button @click="addTodo()">inserisci</button>
+    <div class="form-container">
+
+        <h1>LISTA SPESA</h1>
+    
+        <div class="list-container">
+            <ul>
+                <li v-for="(todo, indice) in todos"> <span @click="toggleStatus(indice)" class="list-item" :class="todo.status ? 'completed' : '' ">{{todo.name}}</span> <span><button @click="deleteTask(indice)" id="btn"><i class="fa-regular fa-trash-can"></i></button></span></li>
+            </ul>
+        </div>
+    
+        <div class="input-container">
+            <input v-model="newTodo.name" type="text" placeholder="inserisci alimento" @keyup.enter="addTodo()">
+            <button @click="addTodo()">inserisci</button>
+        </div>
     </div>
 
 </div>
